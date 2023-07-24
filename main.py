@@ -1,12 +1,13 @@
-# region Imports and defines
-import time
+import os
 import re
+import time
+
+from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from config import CHROMEDRIVER_PATH  # Путь к ChromeDriver
-from bs4 import BeautifulSoup
-from trophie import Trophie, guide
-import os
+
+from config import CHROMEDRIVER_PATH
+from trophie import Trophie, Guide
 
 rarity_pattern = re.compile(r'\d{1,3}\.\d{1,2}')  # паттерн для поиска процентов игроков
 link_match_with_ajax = re.compile(r'^https:\/\/www\.stratege\.ru\/ps4\/games\/.+\/trophies#args:ajax=1$')
@@ -19,8 +20,6 @@ borders = {  # ключ - класс рамки, значение - Описан
 }
 trophy_list = []
 
-
-# endregion
 
 def get_trophies(game='', out_link=''):
     # region Opening Browser
@@ -63,7 +62,7 @@ def get_trophies(game='', out_link=''):
                 else:
                     additions[author] = guide_data
                 index += 1
-            guides.append(guide(main_part, additions))
+            guides.append(Guide(main_part, additions))
         trophy_list.append(Trophie(title, difficult, rarity, guides))
     return 0
     # endregion

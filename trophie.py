@@ -1,4 +1,4 @@
-class guide:
+class Guide:
     def __init__(self, main_part: dict = {}, additions: dict = {}):
         self.main_part = main_part
         self.additions = additions
@@ -23,7 +23,7 @@ class guide:
 
 
 class Trophie:
-    def __init__(self, title: str, difficult: str, rarity: float, cur_guide: list[guide]):
+    def __init__(self, title: str, difficult: str, rarity: float, cur_guide: list[Guide]):
         self.title = title
         self.difficult = difficult
         self.rarity = rarity
